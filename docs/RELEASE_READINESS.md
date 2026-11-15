@@ -17,8 +17,15 @@ TLS checks. All 1,111 ZIP file hashes match. Defender reports no threats in the
 final EXE or ZIP. The tool binaries and dependency licenses are unchanged from
 2.4.0; matching sources and notices are included again.
 
-Clean Windows verification of the staged 2.4.1 candidates is pending. Publication
-must wait for it and restoration of temporary workflow access to read-only.
+The exact staged 2.4.1 files also passed on a clean Windows Server 2025 runner:
+125 tests, zero failures, errors or skips; standalone EXE launch/relaunch; and
+ZIP/resource/codec/TLS checks. Candidate hashes matched the local verified files.
+The test driver used Python 3.12.10; the app supplies its own Python 3.12.14.
+
+[Successful clean Windows run](https://github.com/matsya-dev/idt-yt-downloader/actions/runs/43724159010).
+The previously approved temporary workflow access was restored to read-only
+after verification, before publication. Changes after this run are limited to
+that restoration and this readiness document; runtime/build inputs are unchanged.
 
 ## Previous 2.4.0 release evidence
 
