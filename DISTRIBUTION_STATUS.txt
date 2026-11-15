@@ -1,0 +1,9 @@
+IDT-YT Downloader 2.3.0 — local test package
+
+The application source may be published separately under its MIT license.
+Do not publish this portable binary package yet. The corresponding-source and
+transitive-notice review for bundled FFmpeg and yt-dlp dependencies is incomplete.
+Functional tests and a clean antivirus scan do not resolve that requirement.
+
+See source/docs/LICENSING_REVIEW.md and source/docs/RELEASE_CHECKLIST.md.
+This status file must be updated only after the documented checks are complete.

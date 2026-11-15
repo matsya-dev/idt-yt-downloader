@@ -1,0 +1,104 @@
+IDT-YT Downloader — Audio Downloader
+Version 2.3.0 · Windows 10/11, 64-bit
+
+GET STARTED
+Unzip the whole ZIP and double-click IDT-YT Downloader.exe. Keep IDT-YT Downloader.exe, _internal,
+tools, and assets together. No Python or separate tool installation is needed.
+
+1. CHOOSE RECORDINGS
+Desire Tree: browse folders, use Śrīla Prabhupāda or Bhakti Vikasa Swami shortcuts,
+or paste any Desire Tree folder/MP3 link. ISKCON Chowpatty and ISKCON Matajis are
+shown under More; this changes only the app's grouping, not the real source paths.
+
+YouTube: use Videos or Playlists above the list. All six channel shortcuts support
+playlist browsing, as do other pasted public channel links. You can also paste
+individual video or playlist links. Unavailable content is reported and other
+recordings continue. Some channels have no public playlists.
+
+Nothing is selected initially. Click a folder/playlist or its checkbox to include
+all subfolders. Click its expansion arrow to browse without changing checks.
+The current collection has a tickable row too. Loading appears inside the list;
+a spinning checkbox means a selected folder is still being discovered. Click it
+again to cancel that selection. Download is enabled after discovery finishes.
+
+Click a selected item again to deselect it. Ctrl+click adds/removes only that item.
+Shift+click or Shift+Up/Down selects and ticks a range. Plain Up/Down moves focus
+to the previous/next visible row without changing ticks or discovering recordings.
+Left collapses the focused folder; Right expands it. These keys stay on that row
+when the folder is already collapsed/expanded, and do nothing on a recording.
+Home/End/Page Up/Page Down also move focus without changing ticks. Space toggles
+the focused row only. Ctrl+A selects all shown. Enter opens a collection.
+Keyboard focus has its own highlight and stays visible through navigation.
+
+Search filters known titles in the chosen collection and keeps hidden selections.
+Show selected displays recordings chosen across that source. Clear selection
+cancels discovery too. A partial checkbox means only some descendants are chosen.
+Collapse all preserves checks. Click path branches to navigate, or their dropdown
+arrows to choose subfolders. Long paths have an ellipsis for hidden ancestors.
+
+SHORTCUTS
+Use + Add shortcut… with a name and a link. The current collection is prefilled.
+Right-click any shortcut to Edit… or Remove, including built-ins. Changes survive
+updates. A saved channel Playlists link reopens Playlists. Shortcuts never start
+downloads. Settings → Restore default shortcuts keeps separately added shortcuts.
+The shortcuts scroll independently. + Add shortcut… sits just below the last
+shortcut with a little extra space. Clear selection is next to Select all shown
+above the list; shown and source-wide selected counts appear together on the right.
+Selected totals include recordings hidden by searching or in other folders.
+
+2. CHOOSE DOWNLOAD FOLDER
+Choose folder… sets the destination. Desire Tree uses:
+  Desire Tree Downloads\<devotee name>\<original subfolders>\<original filename>
+YouTube uses:
+  YouTube downloads\<channel name>\<playlist name>\<numbered title [video ID].mp3>
+Individual YouTube videos go directly in the channel folder. Source identities
+and stable paths are the same whether browsing, pasting links, or using shortcuts.
+Original Desire Tree names remain, including His_Holiness_Bhakti_Vikas_Swami.
+Unicode titles are retained. Windows-incompatible names are safely adapted.
+
+3. DOWNLOAD RECORDINGS
+Download becomes Pause, then Resume. Closing saves unfinished work. Reopen and
+press Resume to continue. An active MP3 conversion finishes safely before pausing;
+other transfers pause and retain their partial files. Open download folder and
+Retry failed appear when useful. Details… provides technical information.
+
+SETTINGS
+Color theme offers System (default), Light, and Dark. System follows Windows'
+application light/dark setting, including changes while the app is open. Manual
+Light/Dark overrides are remembered across launches and updates.
+MP3 quality: 96, 128 (default), 192, 256, or 320 kbps. Higher bitrates make larger
+files and cannot restore missing source detail. Different qualities stay separate.
+Downloads at the same time: 1–10, default 1. Conversion stays one at a time.
+Download existing recordings again: off by default. Off verifies and skips matching
+files. On preserves originals and saves numbered new copies. A video selected in
+multiple playlists still needs only one transfer in the same run, with copies in
+the requested playlist folders. New-run preferences do not alter unfinished runs.
+
+YouTube support can be updated independently with one Settings action. The update
+verifies yt-dlp and its JavaScript helper together; failure leaves current support
+active. FFmpeg is included. Downloads happen only when manually started/resumed.
+
+RELIABILITY AND UPDATES
+Completion is counted only after MP3 conversion and verification succeed. Failed
+conversion retains downloaded source audio under the destination's .vedaboat
+folder for retry. Do not remove .vedaboat while downloads are unfinished.
+Verified files are reused; conflicting files are preserved. Desire Tree adoption
+uses exact canonical paths, size, and audio checks, without scanning your disk.
+
+Preferences, shortcuts, browsing positions, completed records, and the unfinished
+queue live in %LOCALAPPDATA%\VedaBoat, separately from the replaceable app folder.
+Unzip each app update into a new folder and use the same Windows account. Old
+downloaded files are not moved or deleted. Older queues keep their original layout
+and quality. Saved-state format upgrades to 3; use this version afterward, as older
+versions safely refuse newer state. Do not run two versions at once.
+
+The list remains visible in a restored window. Resize the sidebar and columns as
+needed; their sizes and window position are saved. Alt+Left goes Back, Alt+Up goes
+to the parent, F5 refreshes, Ctrl+L focuses the link box. Help has a quick reference.
+
+This version uses the approved D3 outline-folder/download icon. IDT-YT Downloader
+is the new name of VedaBoat; the same saved profile and .vedaboat partial folders
+continue to be used, preserving settings, shortcuts, queues, and verified files.
+Close the older VedaBoat window before opening the renamed app.
+The source folder contains editable code and tests; see source\README.md.
+Third-party notices and licenses are included in third-party.
