@@ -4,7 +4,7 @@ on:
     branches: [codex/portable-exe]
   workflow_dispatch:
 permissions:
-  contents: write # Temporary, user-approved access to unpublished candidate files; restore after verification.
+  contents: read
 jobs:
   portable:
     runs-on: windows-2025
