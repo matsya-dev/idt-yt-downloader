@@ -4,7 +4,9 @@ on:
     branches: [codex/portable-exe]
   workflow_dispatch:
 permissions:
-  contents: read
+  # GitHub requires push-level access to read unpublished draft-release assets.
+  # The test script uses only GET requests; it never publishes a release.
+  contents: write
 jobs:
   portable:
     runs-on: windows-2025

@@ -25,7 +25,7 @@ No future written source offer or floating source branch is relied upon.
 | Microsoft code in Windows Python | CPython Windows runtime conditions | Version-matched PC/crtlicense.txt retained; one-time agreement; Windows-only; notices and trademarks unmodified |
 | Tcl/Tk 8.6.12 | Tcl/Tk permissive terms | Exact version-matched notices supplied |
 | OpenSSL / libffi / Expat / zlib / bzip2 / SQLite | Respective upstream terms / public domain | Runtime notices supplied; Python's license includes bzip2 notices |
-| Python packages / vendored packages | Respective terms, including MPL-2.0 for certifi | Exact source distributions supplied; notices copied with unique paths so none overwrite another |
+| Python packages / vendored packages | Respective terms, including MPL-2.0 for certifi and LGPLv3 for setuptools' vendored autocommand | Exact sources supplied, including autocommand's Python code inside the setuptools source archive; notices retain unique paths |
 | PyInstaller | GPL with bootloader exception; runtime-hook terms | Unmodified bootloader, exception and matching source supplied |
 
 FFmpeg dependency auto-detection, GPL, nonfree and version-3-only code are disabled.
