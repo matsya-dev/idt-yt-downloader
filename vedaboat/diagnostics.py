@@ -61,6 +61,9 @@ def self_test(report_path: Path, network=False):
             app.theme_mode.set('Light');app.set_theme();assert not app.dark.get()
             app.theme_mode.set('System');app.set_theme()
             assert app.header_icon.width()>0
+            app.licenses()
+            assert any(isinstance(w, tk.Toplevel) and 'Licenses and source' in w.title() for w in root.winfo_children())
+            assert (application_directory() / 'third-party' / 'LAME-license.txt').is_file()
             return dict(name=root.title(),theme=app.theme_mode.get(),arrows='focus only',icon='D3')
         finally:
             App.load=original
@@ -83,6 +86,22 @@ def self_test(report_path: Path, network=False):
 
     check("mp3_conversion", convert)
     check("mp3_conversion_320",lambda:convert(320))
+    def decode_formats():
+        import base64
+        from .diagnostic_samples import SAMPLES
+        results = {}
+        for extension, encoded in SAMPLES.items():
+            source = work / ('generated.' + extension)
+            target = work / ('decoded-' + extension + '.mp3')
+            source.write_bytes(base64.b64decode(encoded))
+            target.unlink(missing_ok=True)
+            tools.convert(source, target, quality=128)
+            probe = tools.probe(target)
+            if probe['streams'][0]['codec_name'] != 'mp3':
+                raise RuntimeError('Decoder conversion failed: ' + extension)
+            results[extension] = 'decoded and converted'
+        return results
+    check('audio_formats', decode_formats)
     check("approved_icon",lambda:(application_directory()/"assets"/"icon-choice.txt").read_text(encoding="utf-8").strip())
     if network:
         import certifi

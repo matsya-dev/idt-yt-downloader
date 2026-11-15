@@ -3,74 +3,69 @@
 A simple Windows audio downloader for public Desire Tree recordings and YouTube
 videos, playlists and channels. Downloads are started manually.
 
-## Release status
+## Download
 
-The application source is available under the MIT license. The portable Windows
-package is undergoing release review and is **not yet cleared for public
-redistribution**. Its bundled tools need a complete corresponding-source and
-third-party notice review. See [the licensing review](docs/LICENSING_REVIEW.md)
-and [release-readiness results](docs/RELEASE_READINESS.md).
+[Open the latest release](https://github.com/matsya-dev/idt-yt-downloader/releases/latest).
 
-The local 2.3.0 test build passed 111 application tests, native Windows keyboard
-and theme checks, a live short-clip download/conversion/skip check, and extraction
-with a clean PATH. This does not replace the remaining licensing or recipient-PC
-checks. Additional release-audit checks are described in the release report.
+- **Portable EXE:** download `IDT-YT-Downloader-2.4.0-Windows-x64.exe` and double-click.
+  No installation, separate Python or manual unzipping is needed. Bundled resources
+  unpack automatically while the app runs.
+- **ZIP alternative:** extract the complete ZIP and open `IDT-YT Downloader.exe`.
+  Keep the extracted folder together.
 
-## What it does
+Windows x64 is supported. The app is unsigned, so Windows may display an
+unrecognized-app warning. Verify the official source and published checksum.
+The Windows Python runtime conditions are shown once before first use; the app
+and other components keep their own licenses. Read [Instructions.txt](Instructions.txt).
+
+## Features
 
 - Browse Desire Tree folders and select individual MP3s or whole folder trees.
-- Browse Videos and Playlists on six built-in YouTube channels or paste another
+- Browse Videos and Playlists on six built-in YouTube channels, or paste another
   public video, playlist or channel link.
-- Keep editable shortcuts and selections while searching.
-- Choose MP3 quality: 96, 128 (default), 192, 256 or 320 kbps.
-- Pause and resume unfinished work; verify and skip existing recordings.
-- Save repeat downloads as numbered copies when enabled.
-- Follow the Windows theme by default, with Light and Dark options.
+- Editable shortcuts, title search and selection that persists through filtering.
+- MP3 quality choices: 96, 128 (default), 192, 256 and 320 kbps.
+- Pause/resume, saved unfinished work and verified existing-file skipping.
+- Optional numbered repeat copies and 1–10 simultaneous downloads (default 1).
+- System theme by default, with Light and Dark overrides.
 
-Desire Tree downloads start under `Desire Tree Downloads/<devotee>/...`.
+Desire Tree downloads use `Desire Tree Downloads/<devotee>/...`.
 YouTube downloads use `YouTube downloads/<channel>/<playlist>/...`.
+Use recordings you are permitted to download and follow the source site's terms.
+This independent project is not affiliated with or endorsed by YouTube, Google,
+Microsoft, ISKCON Desire Tree or the listed channels.
 
-Use only recordings you are permitted to download and follow the source site's
-terms. This independent project is not affiliated with or endorsed by YouTube,
-Google, ISKCON Desire Tree, or the listed channels.
+## Updates and privacy
 
-## Development
+Replace the portable EXE, or extract a ZIP update into a new folder. Preferences,
+shortcuts and queues remain under `%LOCALAPPDATA%\VedaBoat` for compatibility with
+the former app name. Downloaded files and `.vedaboat` partial folders stay in the
+chosen destination. Close older versions before opening the update.
 
-Use Windows x64 with Python 3.12+ and Tk:
+[Privacy](PRIVACY.md) · [Report a problem](https://github.com/matsya-dev/idt-yt-downloader/issues)
+
+## Source and development
+
+The release includes application source, a matching dependency-source archive,
+checksums and verification results. See [licensing review](docs/LICENSING_REVIEW.md)
+and [dependency build instructions](docs/DEPENDENCY_BUILD.md).
+
+Use Windows x64 and Python 3.12 with Tk:
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
 .\.venv\Scripts\python.exe scripts\fetch_tools.py
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe run.py
 ```
 
-The fetch script uses the exact URLs and SHA256 hashes in `tools/versions.json`.
-It fails if an upstream archive no longer matches; it does not silently upgrade
-build dependencies. Upstream daily assets may expire and then require a reviewed
-manifest update. Runtime YouTube-support updates remain a separate manual action.
+The tool fetch script uses the recorded final release and per-file hashes.
+To rebuild the audio tools from source, follow the dependency build guide.
+`python scripts/build.py` creates both portable formats and source assets.
+`python scripts/verify_portable.py --network` tests both artifacts with a clean
+PATH, including a renamed standalone EXE in a folder containing no sidecar files.
+See [contributing](CONTRIBUTING.md) and [the release checklist](docs/RELEASE_CHECKLIST.md).
 
-`python scripts/release_audit.py` creates a clean source ZIP and an audit report.
-`python scripts/build.py` creates a **local review package**, not a cleared public
-release. Follow [the release checklist](docs/RELEASE_CHECKLIST.md) before publishing
-binaries. See [development details](docs/DEVELOPMENT.md) and
-[contributing](CONTRIBUTING.md).
-
-## Help and privacy
-
-Read [Instructions.txt](Instructions.txt) for the interface and keyboard controls.
-Report problems in [GitHub Issues](https://github.com/matsya-dev/idt-yt-downloader/issues)
-with the app version, Windows version and steps to reproduce. Remove personal
-paths or private links from screenshots and error details.
-
-Preferences and queues remain under `%LOCALAPPDATA%\VedaBoat` for compatibility
-with the former app name. [Privacy details](PRIVACY.md).
-
-## Licenses
-
-The app's own code and included icon assets use the [MIT license](LICENSE.txt).
-The standalone tools and runtime dependencies retain their own licenses. The MIT
-license does not relicense FFmpeg, yt-dlp's bundled components, or other third-party
-code. See [third-party notices](third-party/README.txt) and
-[the redistribution review](docs/LICENSING_REVIEW.md).
+The app's own code and icons use the [MIT license](LICENSE.txt). Runtime and tool
+components retain their separate terms; see [third-party notices](third-party/README.txt).

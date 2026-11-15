@@ -1,46 +1,55 @@
-IDT-YT Downloader third-party components
+IDT-YT Downloader — bundled component notices
 
-The application's own source and icon assets are MIT licensed. Standalone tools
-and runtime libraries keep their own licenses; MIT does not cover the whole
-portable bundle. The app invokes FFmpeg, FFprobe, yt-dlp and QuickJS as separate
-processes. The FFmpeg tools load replaceable shared av* DLLs from tools/.
+The application's own source and icon assets use the MIT license in LICENSE.txt.
+Third-party components retain their own terms. These terms do not relicense the
+whole application. Help > Licenses and source makes the included notices readable.
 
-PUBLIC BINARY RELEASE STATUS: HOLD
-Exact main source references and notices have been collected. Complete source
-access and required notices for transitive FFmpeg and yt-dlp executable components
-are not yet verified. See docs/LICENSING_REVIEW.md (source/docs/ in a local package).
-Do not label the main-project source snapshots a complete source bundle.
+Matching source and build scripts are supplied beside both Windows downloads:
+https://github.com/matsya-dev/idt-yt-downloader/releases/tag/v2.4.0
+Download IDT-YT-Downloader-2.4.0-Dependency-Sources.zip. The application's own source
+is a separate source asset and the tagged repository. sources.json records exact
+upstream versions, source URLs and SHA256 values. No written source offer is used.
 
-FFmpeg / FFprobe / av* DLLs:
-  Actual binary version: n9.0.2-57-gd838f9f9ae-20261114.
-  Actual binary -L result: LGPL version 3 or later.
-  FFmpeg-LICENSE.txt is copied from the upstream binary archive root.
-  GPL-3.0.txt and LGPL-3.0.txt contain the governing base/supplemental texts.
-  Source: https://github.com/FFmpeg/FFmpeg/tree/d838f9f9aeb0e09b4d068e2af20a46a12640696f
-  Recipes: https://github.com/FFmpeg-Builds/FFmpeg-Builds/tree/c9fe5114060e507409f7ee07edfd82efaf25d767
-  See FFmpeg-build-information.txt, FFmpeg-source-map.json and tools/versions.json.
-  Recipe references include disabled/platform-only packages; they do not establish
-  which dependencies were actually linked or that all corresponding source is supplied.
+FFmpeg / FFprobe:
+  Source commit d838f9f9aeb0e09b4d068e2af20a46a12640696f.
+  Audio-only project build; LGPL 2.1 or later. See FFmpeg-LGPL-2.1.txt.
+  Full unmodified FFmpeg and LAME source and the build commands are supplied.
+  External codec library: LAME 3.100, LGPL 2 or later; see LAME-license.txt.
+  Automatic dependency discovery, GPL, nonfree and version-3-only options are off.
+  The tools are separate processes. Statically linked GCC/MinGW runtime portions
+  are covered by the supplied GCC runtime exception and MinGW notices. Windows
+  system libraries are provided by Windows. See FFmpeg-build-information.txt.
 
-yt-dlp 2026.10.26:
-  Main source: Unlicense. The standalone EXE contains additional licensed components,
-  including GPL components. Tag-matched notices: yt-dlp-LICENSE.txt and
-  yt-dlp-THIRD_PARTY_LICENSES.txt. Main source (not the full executable source):
-  https://github.com/yt-dlp/yt-dlp/tree/2026.10.26
+YouTube helper:
+  Project-built yt-dlp 2026.10.26, Unlicense; see yt-dlp-LICENSE.txt.
+  yt-dlp-ejs 0.8.0 uses Unlicense plus MIT/ISC library components. Their original
+  notices are in Python-packages/yt-dlp-ejs/ and EJS-library-notices.txt.
+  Matching yt-dlp/EJS source distributions and build scripts are supplied.
+  Optional Mutagen, PyCryptodome, Brotli, WebSockets, curl-cffi and SecretStorage
+  modules are not part of this bundled helper.
 
-QuickJS-NG v0.18.0:
-  MIT; tag-matched notice: QuickJS-LICENSE.txt.
-  Source: https://github.com/quickjs-ng/quickjs/tree/v0.18.0
+QuickJS-NG:
+  Unmodified upstream Windows release v0.18.0, MIT; QuickJS-LICENSE.txt.
+  Matching source is supplied in the dependency source asset.
 
-Python / Tcl / Tk / Python packages:
-  Exact package versions and project references: Python-package-inventory.json.
-  The builder copies Python/Tcl/Tk notices and installed-package LICENSE/NOTICE
-  files beside this file. Python: https://www.python.org/psf/license/
-  Tcl/Tk: https://www.tcl.tk/software/tcltk/license.html
+Python / Tcl / Tk and runtime libraries:
+  Python 3.12.14, PSF terms; see Python-license.txt. Its Windows runtime conditions
+  are in Python-Windows-CRT-license.txt and are shown once before first use.
+  They apply only to Microsoft Distributable Code, not Python or the app's code.
+  Microsoft's notices are preserved and this is a Windows-only distribution.
+  Tcl/Tk 8.6.12: Tcl-license.txt and Tk-license.txt.
+  OpenSSL, libffi, Expat, zlib and bzip2 retain their supplied notices (bzip2's
+  notice is also in the Python license). SQLite is public domain.
+  Python-package license files, including vendored notices, retain unique paths
+  under Python-packages/. Exact source distributions are supplied where recorded.
 
 PyInstaller:
-  GPL with bootloader exception; see PyInstaller-COPYING.txt.
-  https://pyinstaller.org/en/stable/license.html
+  Unmodified bootloader/runtime hooks; its exception permits bundling this
+  independent application. PyInstaller-COPYING.txt and Python-packages/pyinstaller/
+  contain the terms and exception. Matching PyInstaller source is supplied.
 
-No application files have been code-signed by this project. A clean antivirus
-result is separate from signing and license compliance.
+Manual support updates obtain new tools directly from upstream publishers.
+The upstream release and its terms apply to that separately downloaded version.
+The source archive above describes the initially bundled versions.
+
+The app is unsigned. No security settings are changed by this software.

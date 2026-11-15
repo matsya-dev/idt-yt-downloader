@@ -1,32 +1,32 @@
 # Release checklist
 
-The application source and the portable Windows package have separate release
-checks. A passing functional test suite does not establish redistribution rights
-for the standalone tools.
+1. Freeze runtime/build versions and source URLs. Keep existing user state and
+   older releases intact. Do not include profiles, recordings, test outputs,
+   credentials or obsolete design alternatives in public artifacts.
+2. Build the recorded audio-only FFmpeg/LAME and minimal yt-dlp helper, or fetch
+   the exact previously tested tools. Verify hashes, license notices and source
+   completeness. See LICENSING_REVIEW.md and DEPENDENCY_BUILD.md.
+3. Run the complete Windows test suite and source/runtime diagnostics.
+4. Run scripts/build.py to create the portable EXE, folder ZIP, application-source
+   ZIP, dependency-source ZIP and SHA256SUMS. Both source assets must be available
+   with the Windows downloads, without charge.
+5. Run scripts/verify_portable.py --network. Verify the renamed EXE runs by itself
+   with a clean PATH, relaunch it, and verify every ZIP manifest member. Check all
+   audio diagnostic formats and the in-app license viewer.
+6. Scan the final EXE, ZIP and extracted folder using Microsoft Defender. Preserve
+   scan results and exit codes. Do not disable system protection to pass a check.
+7. Verify native first-launch conditions, agreement persistence, exit, browsing,
+   keyboard navigation, System/Light/Dark and Help in an isolated local profile.
+8. Upload candidates only to an unpublished GitHub draft. Run the same exact
+   downloads and application tests on a clean GitHub Windows runner. Verify asset
+   hashes before testing. Add beta feedback where available; document the tested
+   OS and any remaining practical limits accurately.
+9. Generate the final verification report. Update source/readiness documents and
+   source ZIP/checksums after documentation changes. Tag the final source commit.
+10. Publish the draft only after every required check passes. Present the EXE as
+    the main download, ZIP as alternative, and source assets beside them. State
+    that the app is unsigned. Verify public download links and artifact hashes.
 
-1. Run `python -m pytest -q` on Windows with the recorded tools available.
-2. Run `python scripts/release_audit.py` to audit the source upload and create its
-   clean source ZIP. Review `release/source-audit.json` before committing files.
-3. Complete the dependency review in `docs/LICENSING_REVIEW.md`. A Windows download
-   must have matching source access and complete notices for its bundled tools.
-   The source repository may be published separately without those binaries.
-4. Build with `python scripts/build.py`. That creates a LOCAL test package; it is
-   not public-release approval. The package includes `DISTRIBUTION_STATUS.txt`.
-5. Run `python scripts/verify_package.py` against the final ZIP. It checks all
-   archive members and hashes and runs the extracted executable with a clean PATH.
-6. Scan both the ZIP and extracted directory using Microsoft Defender. Preserve
-   the exit code, scan date and result. A clean scan is not a code signature.
-7. Test a browser-downloaded ZIP on other Windows x64 PCs without Python or FFmpeg
-   installed. Check first launch, display scaling, source browsing, selected
-   playlists, Unicode destinations, pause/close/reopen/resume and updates.
-8. If signing, sign before calculating the final manifest and ZIP checksum, then
-   repeat package verification and the malware scan. Do not change signed files.
-9. Create a GitHub release draft. Include the exact version, Windows x64 support,
-   known limits, checksums, instructions, notices and corresponding-source links
-   immediately beside the binary download. Attach no local profiles or test media.
-10. Publish the binary only after the licensing and recipient-machine checks pass.
-    Keep older releases and the previous known-working package available.
-
-On 15 November 2026, the 2.3.0 application passes its functional checks. Public
-binary release is held for the corresponding-source inventory and recipient-PC
-testing. See `docs/LICENSING_REVIEW.md` for specific unresolved items.
+Signing is optional for this release and is not claimed. A clean scan does not
+establish SmartScreen reputation. Use a valid signing identity before describing
+any later build as signed; calculate hashes only after signing.

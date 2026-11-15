@@ -1,0 +1,20 @@
+{
+  "release_id": 446077120,
+  "assets": [
+    {
+      "id": 751083833,
+      "name": "IDT-YT-Downloader-2.4.0-Windows-x64.exe",
+      "sha256": "a3b1e85bfb19360455b2e41c9ade5eb834c5067e5eb119e20ea0eeea7bde9dd5"
+    },
+    {
+      "id": 751085018,
+      "name": "IDT-YT-Downloader-2.4.0-Windows-x64.zip",
+      "sha256": "7988d8b688e4c281ceb30fa6cca08564928a08cde240abd25f4f7578e066e0c6"
+    },
+    {
+      "id": 751086191,
+      "name": "IDT-YT-Downloader-2.4.0-Dependency-Sources.zip",
+      "sha256": "6c3ffbb97d7fcd841abd68c14dcc1e9e512342896daa808eb85e391fbb352a23"
+    }
+  ]
+}

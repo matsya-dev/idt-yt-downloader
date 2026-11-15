@@ -17,7 +17,12 @@ NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 
 
 def application_directory() -> Path:
-    return Path(sys.executable).parent if getattr(sys, "frozen", False) else Path(__file__).resolve().parent.parent
+    if getattr(sys, "frozen", False):
+        bundle = Path(getattr(sys, '_MEIPASS', Path(sys.executable).parent))
+        # One-file resources live in the bootloader's extraction directory. New
+        # folder builds use the same layout; older folder builds keep sidecars.
+        return bundle if (bundle / 'assets').is_dir() else Path(sys.executable).parent
+    return Path(__file__).resolve().parent.parent
 
 
 def stop_process(process: subprocess.Popen):
@@ -93,7 +98,7 @@ class Tools:
         # Updater publishes tools using atomic rename only after successful checks.
         path = updated if updated.exists() else self.bundled / name
         if not path.is_file():
-            raise UserError(f"A bundled tool is missing. Unzip the complete {APP_NAME} package again.")
+            raise UserError(f"A bundled tool is missing. Download {APP_NAME} again from its official release page.")
         return path
 
     def yt_args(self) -> list[str]:

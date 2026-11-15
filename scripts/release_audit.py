@@ -17,10 +17,14 @@ ROOT_FILES = (
     '.gitignore', '.gitattributes', 'README.md', 'LICENSE.txt', 'Instructions.txt',
     'Release notes.txt', 'PRIVACY.md', 'CONTRIBUTING.md', 'DISTRIBUTION_STATUS.txt',
     'requirements.txt', 'requirements-dev.txt', 'pytest.ini', 'run.py',
+    'requirements-lock.txt',
 )
 SCRIPTS = (
     'app_icon.svg', 'build.py', 'fetch_tools.py', 'make_icon.py', 'live_check.py',
     'live_download_check.py', 'verify_package.py', 'release_audit.py',
+    'build_audio_tools.sh', 'build_youtube_tool.py', 'youtube_entry.py',
+    'prepare_dependencies.py', 'collect_licenses.py', 'verify_portable.py',
+    'ci_windows_check.py',
 )
 TEXT_SUFFIXES = {'.py', '.md', '.txt', '.json', '.yml', '.yaml', '.svg', '.ini'}
 SECRET_PATTERNS = (

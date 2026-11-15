@@ -1,86 +1,32 @@
 {
+  "ffmpeg.exe": {
+    "version": "n9.0.2-57-gd838f9f9ae-IDT-YT-audio",
+    "sha256": "6cc14c6d84f982143c0aed0283db9b9f8108d8710cca0bcd05fcf78fa9358609",
+    "url": "https://github.com/matsya-dev/idt-yt-downloader/releases/download/v2.4.0/IDT-YT-Downloader-2.4.0-Windows-x64.zip",
+    "archive_member": "IDT-YT Downloader/_internal/tools/ffmpeg.exe",
+    "source": "https://github.com/matsya-dev/idt-yt-downloader/releases/download/v2.4.0/IDT-YT-Downloader-2.4.0-Dependency-Sources.zip",
+    "source_built": true
+  },
+  "ffprobe.exe": {
+    "version": "n9.0.2-57-gd838f9f9ae-IDT-YT-audio",
+    "sha256": "bf149867c67d8e1939c1b03827f49fa273af225dd695901bbfb09e66ccb59da2",
+    "url": "https://github.com/matsya-dev/idt-yt-downloader/releases/download/v2.4.0/IDT-YT-Downloader-2.4.0-Windows-x64.zip",
+    "archive_member": "IDT-YT Downloader/_internal/tools/ffprobe.exe",
+    "source": "https://github.com/matsya-dev/idt-yt-downloader/releases/download/v2.4.0/IDT-YT-Downloader-2.4.0-Dependency-Sources.zip",
+    "source_built": true
+  },
   "yt-dlp.exe": {
-    "version": "2026.10.26",
-    "url": "https://github.com/yt-dlp/yt-dlp/releases/download/2026.10.26/yt-dlp.exe",
-    "sha256": "f5389d3698ecde4ef06f4e6b1ce0294fe9ac1396228c8990b8d3416d6d177a7d",
-    "source": "https://api.github.com/repos/yt-dlp/yt-dlp/tarball/2026.10.26"
+    "version": "2026.10.26-minimal",
+    "sha256": "8ca502898d9575704c279a812f5ba84cf8fada4d4d1f17d4dfe8f9674995afe2",
+    "url": "https://github.com/matsya-dev/idt-yt-downloader/releases/download/v2.4.0/IDT-YT-Downloader-2.4.0-Windows-x64.zip",
+    "archive_member": "IDT-YT Downloader/_internal/tools/yt-dlp.exe",
+    "source": "https://github.com/matsya-dev/idt-yt-downloader/releases/download/v2.4.0/IDT-YT-Downloader-2.4.0-Dependency-Sources.zip",
+    "source_built": true
   },
   "qjs.exe": {
     "version": "v0.18.0",
-    "url": "https://github.com/quickjs-ng/quickjs/releases/download/v0.18.0/qjs-windows-x86_64.exe",
     "sha256": "ff03398d74ea6e6bd3a8e58058f7003225abcac229d7d57775b7aaae812a49c7",
-    "source": "https://api.github.com/repos/quickjs-ng/quickjs/tarball/v0.18.0"
-  },
-  "avformat-63.dll": {
-    "version": "n9.0.2-57-gd838f9f9ae-20261114",
-    "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-14-12-37/ffmpeg-n9.0.2-57-gd838f9f9ae-win64-lgpl-shared-9.0.zip",
-    "sha256": "1bc7c4453fa62f66bceb3f962c364f7f752906d62fa1b36b746f96d570bccead",
-    "source": "https://github.com/FFmpeg/FFmpeg/tree/d838f9f9aeb0e09b4d068e2af20a46a12640696f",
-    "archive_sha256": "cdb9dd9f94bc3958dd0d7ba39ec61b8e9d0a68351bf2f8be22178bd8e0a5aa91",
-    "build_source": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/tree/c9fe5114060e507409f7ee07edfd82efaf25d767"
-  },
-  "avfilter-12.dll": {
-    "version": "n9.0.2-57-gd838f9f9ae-20261114",
-    "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-14-12-37/ffmpeg-n9.0.2-57-gd838f9f9ae-win64-lgpl-shared-9.0.zip",
-    "sha256": "5b38c30df716f394eb8ef7276f4d34678956ac916f75b2d673c095d4ca671d28",
-    "source": "https://github.com/FFmpeg/FFmpeg/tree/d838f9f9aeb0e09b4d068e2af20a46a12640696f",
-    "archive_sha256": "cdb9dd9f94bc3958dd0d7ba39ec61b8e9d0a68351bf2f8be22178bd8e0a5aa91",
-    "build_source": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/tree/c9fe5114060e507409f7ee07edfd82efaf25d767"
-  },
-  "avdevice-63.dll": {
-    "version": "n9.0.2-57-gd838f9f9ae-20261114",
-    "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-14-12-37/ffmpeg-n9.0.2-57-gd838f9f9ae-win64-lgpl-shared-9.0.zip",
-    "sha256": "ccd4fc4859f2b680543cfecbcb6dfa2e91df7d560835cf29ad6f6f269411219c",
-    "source": "https://github.com/FFmpeg/FFmpeg/tree/d838f9f9aeb0e09b4d068e2af20a46a12640696f",
-    "archive_sha256": "cdb9dd9f94bc3958dd0d7ba39ec61b8e9d0a68351bf2f8be22178bd8e0a5aa91",
-    "build_source": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/tree/c9fe5114060e507409f7ee07edfd82efaf25d767"
-  },
-  "swscale-10.dll": {
-    "version": "n9.0.2-57-gd838f9f9ae-20261114",
-    "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-14-12-37/ffmpeg-n9.0.2-57-gd838f9f9ae-win64-lgpl-shared-9.0.zip",
-    "sha256": "b3f9cc4f536fabe4987d26732347287dbb8f122abe90906a54937286448c0dfd",
-    "source": "https://github.com/FFmpeg/FFmpeg/tree/d838f9f9aeb0e09b4d068e2af20a46a12640696f",
-    "archive_sha256": "cdb9dd9f94bc3958dd0d7ba39ec61b8e9d0a68351bf2f8be22178bd8e0a5aa91",
-    "build_source": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/tree/c9fe5114060e507409f7ee07edfd82efaf25d767"
-  },
-  "avutil-61.dll": {
-    "version": "n9.0.2-57-gd838f9f9ae-20261114",
-    "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-14-12-37/ffmpeg-n9.0.2-57-gd838f9f9ae-win64-lgpl-shared-9.0.zip",
-    "sha256": "016e4b56f902afccc704b8cdb1b6bc75fd1f5dde9ad97d34f78cf2353cbbd4a3",
-    "source": "https://github.com/FFmpeg/FFmpeg/tree/d838f9f9aeb0e09b4d068e2af20a46a12640696f",
-    "archive_sha256": "cdb9dd9f94bc3958dd0d7ba39ec61b8e9d0a68351bf2f8be22178bd8e0a5aa91",
-    "build_source": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/tree/c9fe5114060e507409f7ee07edfd82efaf25d767"
-  },
-  "swresample-7.dll": {
-    "version": "n9.0.2-57-gd838f9f9ae-20261114",
-    "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-14-12-37/ffmpeg-n9.0.2-57-gd838f9f9ae-win64-lgpl-shared-9.0.zip",
-    "sha256": "80b87f6f1a2c088e721dd0b4ed3c853c51a931adfe7c166fe3418ba39aeba57a",
-    "source": "https://github.com/FFmpeg/FFmpeg/tree/d838f9f9aeb0e09b4d068e2af20a46a12640696f",
-    "archive_sha256": "cdb9dd9f94bc3958dd0d7ba39ec61b8e9d0a68351bf2f8be22178bd8e0a5aa91",
-    "build_source": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/tree/c9fe5114060e507409f7ee07edfd82efaf25d767"
-  },
-  "avcodec-63.dll": {
-    "version": "n9.0.2-57-gd838f9f9ae-20261114",
-    "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-14-12-37/ffmpeg-n9.0.2-57-gd838f9f9ae-win64-lgpl-shared-9.0.zip",
-    "sha256": "fb77f73505d9573619acb7d4649e9ab475958cbe87848c1278b5eea900d1a6d4",
-    "source": "https://github.com/FFmpeg/FFmpeg/tree/d838f9f9aeb0e09b4d068e2af20a46a12640696f",
-    "archive_sha256": "cdb9dd9f94bc3958dd0d7ba39ec61b8e9d0a68351bf2f8be22178bd8e0a5aa91",
-    "build_source": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/tree/c9fe5114060e507409f7ee07edfd82efaf25d767"
-  },
-  "ffmpeg.exe": {
-    "version": "n9.0.2-57-gd838f9f9ae-20261114",
-    "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-14-12-37/ffmpeg-n9.0.2-57-gd838f9f9ae-win64-lgpl-shared-9.0.zip",
-    "sha256": "2c54793ec36efe975a4dcb1458931f1ee6a6274fe5e81d5383dd98f0fd1c09cc",
-    "source": "https://github.com/FFmpeg/FFmpeg/tree/d838f9f9aeb0e09b4d068e2af20a46a12640696f",
-    "archive_sha256": "cdb9dd9f94bc3958dd0d7ba39ec61b8e9d0a68351bf2f8be22178bd8e0a5aa91",
-    "build_source": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/tree/c9fe5114060e507409f7ee07edfd82efaf25d767"
-  },
-  "ffprobe.exe": {
-    "version": "n9.0.2-57-gd838f9f9ae-20261114",
-    "url": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/releases/download/autobuild-2026-11-14-12-37/ffmpeg-n9.0.2-57-gd838f9f9ae-win64-lgpl-shared-9.0.zip",
-    "sha256": "b772978f256409752f53ab3deb438fb9ba1c101bf42254f0144ee875dcb71242",
-    "source": "https://github.com/FFmpeg/FFmpeg/tree/d838f9f9aeb0e09b4d068e2af20a46a12640696f",
-    "archive_sha256": "cdb9dd9f94bc3958dd0d7ba39ec61b8e9d0a68351bf2f8be22178bd8e0a5aa91",
-    "build_source": "https://github.com/FFmpeg-Builds/FFmpeg-Builds/tree/c9fe5114060e507409f7ee07edfd82efaf25d767"
+    "url": "https://github.com/quickjs-ng/quickjs/releases/download/v0.18.0/qjs-windows-x86_64.exe",
+    "source": "https://github.com/quickjs-ng/quickjs/tree/v0.18.0"
   }
 }

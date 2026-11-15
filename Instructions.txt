@@ -1,9 +1,8 @@
-IDT-YT Downloader — Audio Downloader
-Version 2.3.0 · Windows 10/11, 64-bit
+IDT-YT Downloader 2.4.0
 
-GET STARTED
-Unzip the whole ZIP and double-click IDT-YT Downloader.exe. Keep IDT-YT Downloader.exe, _internal,
-tools, and assets together. No Python or separate tool installation is needed.
+Download the portable EXE and double-click it. No installation or manual extraction
+is needed. The first launch shows the Windows Python runtime conditions once.
+The ZIP alternative must be extracted completely; keep its folder together.
 
 1. CHOOSE RECORDINGS
 Desire Tree: browse folders, use Śrīla Prabhupāda or Bhakti Vikasa Swami shortcuts,
@@ -100,5 +99,6 @@ This version uses the approved D3 outline-folder/download icon. IDT-YT Downloade
 is the new name of VedaBoat; the same saved profile and .vedaboat partial folders
 continue to be used, preserving settings, shortcuts, queues, and verified files.
 Close the older VedaBoat window before opening the renamed app.
-The source folder contains editable code and tests; see source\README.md.
+Editable source, matching dependency source and checksums are separate assets on
+the official GitHub release. Help > Licenses and source opens the included notices.
 Third-party notices and licenses are included in third-party.

@@ -1,9 +1,12 @@
-IDT-YT Downloader 2.3.0 — local test package
+IDT-YT Downloader 2.4.0 — distribution information
 
-The application source may be published separately under its MIT license.
-Do not publish this portable binary package yet. The corresponding-source and
-transitive-notice review for bundled FFmpeg and yt-dlp dependencies is incomplete.
-Functional tests and a clean antivirus scan do not resolve that requirement.
+Main download: single portable Windows x64 EXE. ZIP alternative and both source
+archives are distributed alongside it, with SHA256 checksums and test results.
 
-See source/docs/LICENSING_REVIEW.md and source/docs/RELEASE_CHECKLIST.md.
-This status file must be updated only after the documented checks are complete.
+The app's own code is MIT licensed. Bundled tools and runtime components retain
+separate licenses; see Help > Licenses and source and third-party/README.txt.
+Windows Python runtime conditions require a one-time agreement before app use.
+These conditions apply only to the Microsoft runtime components.
+
+Release publication is performed only after the matching-source archive, final
+artifact hashes, local checks, antivirus scan and clean Windows-runner checks pass.

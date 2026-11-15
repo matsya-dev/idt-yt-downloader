@@ -1,28 +1,19 @@
-IDT-YT Downloader 2.3.0
+IDT-YT Downloader 2.4.0
 
-VedaBoat is now IDT-YT Downloader, with the approved D3 outline-folder icon.
-Existing preferences, shortcuts, unfinished queues, partial audio, verified files,
-and destination assignments continue in the same profile and folders.
+Single portable EXE is the main download: double-click to run, with no installation
+or manual extraction. Resources unpack automatically while running. A ZIP folder
+alternative is also available. Both use the same saved preferences, shortcuts,
+queue, download history, destination assignments and partial files.
 
-Plain Up/Down moves keyboard focus only; it never ticks rows or starts discovering
-their contents. Right expands and Left collapses the focused folder. Shift+Up/Down
-still selects and ticks a range. Space toggles the focused row. A separate focus
-highlight stays visible through filtering, loading, refresh and collapsing.
-The ordinary Up-arrow modifier handling has been corrected; Alt+Up remains a
-separate parent-navigation shortcut. No wrapping at the ends of the list.
+The first launch displays the Windows Python runtime conditions once. These apply
+only to the included Microsoft runtime components. Help > Licenses and source
+provides the complete notices and a link to the matching source downloads.
 
-System is the default color theme, with Light and Dark overrides in Settings.
-System follows Windows' app theme and updates while open. Explicit choices persist.
+The audio tools are now built from a smaller, fully recorded source set, reducing
+package size. MP3 defaults, output paths, selection/navigation, themes, resume and
+independent YouTube-support updates remain compatible with 2.3.0. System is the
+default theme; the D3 outline-folder icon is retained.
 
-Clear selection is beside Select all shown. Shown and source-wide selected counts
-appear together on the right. Add shortcut follows the last shortcut with extra
-spacing. The sidebar guidance has been removed. Refresh has a connected, aligned
-arrowhead. The compact layout gives more space to recordings.
-
-All existing sources, editable shortcuts, quality settings, numbered repeat copies,
-concurrent transfers, safe conversion and resume behavior are retained. Defaults
-remain MP3 128 kbps, one network download, and skip verified existing recordings.
-
-Close the older VedaBoat window, unzip into a new folder and open
-IDT-YT Downloader.exe. Keep the whole unzipped folder together. Older app folders
-and existing downloaded media are not moved or deleted by this update.
+Matching dependency source, the application's source, checksums and verification
+results accompany the Windows downloads. The app is unsigned; Windows may show
+an unrecognized-app warning. Download only from the project's official release.

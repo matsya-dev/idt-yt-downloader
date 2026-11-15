@@ -906,13 +906,43 @@ class App:
             "Right-click a shortcut to edit or remove it. Selected totals include hidden items. "
             "Settings → Color theme offers System (default), Light, and Dark.\n\n"
             "Trouble with YouTube? Settings → Update YouTube support. "
-            "Use Details… for error information. Keep the whole unzipped app folder together."
+            "Use Details… for error information. The portable EXE needs no installation. "
+            "If you use the ZIP alternative, keep its whole extracted folder together."
         )
         box = tk.Text(outer, wrap="word", bg=BG, fg=TEXT, relief="flat", font=("Segoe UI", 10), padx=0, pady=0)
         box.insert("1.0", text)
         box.configure(state="disabled")
         box.pack(fill="both", expand=True)
-        ttk.Button(outer, text="Close", command=window.destroy).pack(anchor="e", pady=(12, 0))
+        actions = ttk.Frame(outer)
+        actions.pack(fill='x', pady=(12, 0))
+        ttk.Button(actions, text='Licenses and source', command=self.licenses).pack(side='left')
+        ttk.Button(actions, text="Close", command=window.destroy).pack(side='right')
+        self.set_theme()
+
+    def licenses(self):
+        import webbrowser
+        window, outer = self.dialog('Licenses and source', 760)
+        window.geometry('760x540')
+        source_url = 'https://github.com/matsya-dev/idt-yt-downloader/releases/tag/v' + __version__
+        ttk.Label(outer, text='Third-party licenses and matching source are supplied with each release.').pack(anchor='w', pady=(0, 8))
+        body = ttk.Frame(outer)
+        body.pack(fill='both', expand=True)
+        bar = ttk.Scrollbar(body)
+        bar.pack(side='right', fill='y')
+        box = tk.Text(body, wrap='word', bg=SOFT, fg=TEXT, relief='flat', font=('Segoe UI', 9), yscrollcommand=bar.set)
+        box.pack(fill='both', expand=True)
+        bar.configure(command=box.yview)
+        directory = application_directory()
+        paths = [directory / 'LICENSE.txt'] + sorted(p for p in (directory / 'third-party').rglob('*')
+                 if p.is_file() and (p.suffix == '.txt' or any(w in p.name.upper() for w in ('LICENSE', 'COPYING', 'NOTICE'))))
+        for path in paths:
+            if path.is_file():
+                box.insert('end', path.relative_to(directory).as_posix() + '\n' + '=' * 50 + '\n' + path.read_text(encoding='utf-8-sig', errors='replace') + '\n\n')
+        box.configure(state='disabled')
+        actions = ttk.Frame(outer)
+        actions.pack(fill='x', pady=(12, 0))
+        ttk.Button(actions, text='View release and source downloads', command=lambda: webbrowser.open(source_url)).pack(side='left')
+        ttk.Button(actions, text='Close', command=window.destroy).pack(side='right')
         self.set_theme()
 
     def details(self):
@@ -983,6 +1013,12 @@ def main():
                 root.destroy()
                 return
         state = State()
+        from .license_notice import ensure_runtime_terms
+        root.withdraw()
+        if not ensure_runtime_terms(root, state):
+            root.destroy()
+            return
+        root.deiconify()
         App(root, state)
         root.mainloop()
     except Exception as error:

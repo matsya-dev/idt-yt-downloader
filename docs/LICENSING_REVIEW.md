@@ -1,77 +1,52 @@
-# Redistribution review — 15 November 2026
+# Licensing review for 2.4.0
 
-This is a technical inventory and release decision, not a legal opinion.
+The previous 2.3.0 review identified missing source/notice coverage for the broad
+upstream FFmpeg build and official yt-dlp executable. Those binaries are not used
+in the 2.4.0 distribution. Their existing local test package remains unchanged.
 
-## Release decision
+## Current distribution method
 
-**Application source:** suitable for publication under the existing MIT license,
-with the included notices. The clean source export contains no standalone tools,
-user profile, downloaded recordings, test outputs or old release packages.
+The release provides the portable EXE, a folder ZIP alternative, application source,
+and a matching dependency-source ZIP from the same GitHub release page without
+charge. Source archives are checksum-verified during packaging. FFmpeg/LAME sources,
+all configure/build commands and runtime notices accompany the binary download.
+No future written source offer or floating source branch is relied upon.
 
-**Portable Windows binary:** do not publish yet. The exact main source commits
-and build recipe references have been identified, but complete corresponding
-source access and notices for bundled/transitive dependencies remain unverified.
-The 2.3.0 ZIP remains a local test build.
-
-## Reviewed components
-
-| Component | License and evidence | Status |
+| Component | Terms | Evidence / distribution handling |
 | --- | --- | --- |
-| Application Python code, tests and icon assets | Existing MIT license; source supplied | Ready for source publication |
-| Python/Tcl/Tk and Python packages | Runtime and package notices copied by builder; pinned installed versions recorded in dependency inventory | Notices inventoried; inspect final archive after rebuilding |
-| FFmpeg/FFprobe and av* DLLs | Binary `-L` reports LGPLv3-or-later; `--enable-version3`, shared DLLs, no `--enable-gpl` or `--enable-nonfree` | Main source identified; transitive source/notice review incomplete |
-| yt-dlp 2026.10.26 standalone executable | yt-dlp source is Unlicense; executable includes components with other licenses, including GPL | Tag-matched notices saved; complete executable dependency source inventory incomplete |
-| QuickJS-NG v0.18.0 | MIT; tag-matched notice saved | Main source identified |
-| PyInstaller | GPL with bootloader exception permits bundling independent application code | Record/copy exception text with binary notices |
+| App and icon assets | MIT | Full application source and original notice supplied |
+| FFmpeg / FFprobe | LGPL-2.1-or-later | Pinned full source, generated VERSION metadata and complete build script supplied; no C source patches |
+| LAME 3.100 | LGPL-2.0-or-later | Full unmodified source and configure/build commands supplied; linked into FFmpeg tools |
+| GCC / MinGW runtime portions | GCC runtime exception / MinGW runtime notices | Eligible unmodified GCC compilation; notices supplied; compiler is not shipped |
+| yt-dlp 2026.10.26 helper | Unlicense plus its included permissive dependencies | Project-built helper, matching source supplied; optional GPL modules excluded and PYZ inventory checked |
+| yt-dlp-ejs 0.8.0 | Unlicense, MIT, ISC | Source distribution includes preferred TypeScript source/lockfile; original library attribution preserved |
+| QuickJS-NG v0.18.0 | MIT | Upstream binary hash and full source archive recorded; notice supplied |
+| Python 3.12.14 | PSF and included component terms | Exact runtime notices retained; managed CA-rejection policy preserved unchanged |
+| Microsoft code in Windows Python | CPython Windows runtime conditions | Version-matched PC/crtlicense.txt retained; one-time agreement; Windows-only; notices and trademarks unmodified |
+| Tcl/Tk 8.6.12 | Tcl/Tk permissive terms | Exact version-matched notices supplied |
+| OpenSSL / libffi / Expat / zlib / bzip2 / SQLite | Respective upstream terms / public domain | Runtime notices supplied; Python's license includes bzip2 notices |
+| Python packages / vendored packages | Respective terms, including MPL-2.0 for certifi | Exact source distributions supplied; notices copied with unique paths so none overwrite another |
+| PyInstaller | GPL with bootloader exception; runtime-hook terms | Unmodified bootloader, exception and matching source supplied |
 
-## FFmpeg evidence
+FFmpeg dependency auto-detection, GPL, nonfree and version-3-only code are disabled.
+The only external codec library is LAME. PE import checks find only Windows system
+DLLs. Statically linked compiler-runtime portions are covered by their notices and
+runtime exception. Both FFmpeg and the linked LAME work can be modified and rebuilt
+using the complete supplied sources; no runtime hash check prevents replacement.
+The app communicates with these tools as separate processes.
 
-Bundled version: `n9.0.2-57-gd838f9f9ae-20261114`.
+The third-party notices remain distinct from the application's MIT terms. Runtime
+conditions do not restrict the app's or LGPL components' modification rights.
+Manual support updates fetch upstream tools directly; their versions and terms
+are separate from this project's initially bundled and redistributed versions.
 
-- FFmpeg source commit:
-  [`d838f9f9aeb0e09b4d068e2af20a46a12640696f`](https://github.com/FFmpeg/FFmpeg/tree/d838f9f9aeb0e09b4d068e2af20a46a12640696f)
-- FFmpeg-Builds recipes commit, resolved from the original release tag:
-  [`c9fe5114060e507409f7ee07edfd82efaf25d767`](https://github.com/FFmpeg-Builds/FFmpeg-Builds/tree/c9fe5114060e507409f7ee07edfd82efaf25d767)
-- Original upstream ZIP SHA256:
-  `4bd4716920debc7b070a21e3fe005f2cfa6562eb1975fc4f185eaed233ad3e4e`.
-- Individual binary hashes remain in `tools/versions.json`.
-- `third-party/FFmpeg-source-map.json` lists upstream recipe source references.
-  It deliberately includes disabled and platform-only recipes; it is not a
-  certified list of libraries present in the Windows binary.
-- FFmpeg's complete version/configuration output is in
-  `third-party/FFmpeg-build-information.txt`.
+See [dependency build instructions](DEPENDENCY_BUILD.md), `third-party/sources.json`
+and the generated final-release verification report for exact artifact identities.
+This is a documented technical redistribution review, not a legal opinion about
+all possible uses or jurisdictions. No recordings are included in the release.
 
-The previous notice's general reference to the floating `release/9.0` branch was
-insufficient to identify the exact source. It has been replaced by immutable
-references. The original fetch script also looked for license files only under
-`doc/`, while this upstream archive places `LICENSE.txt` at its root; the fetch
-and packaging preparation now account for that root notice.
-
-## Work required before a public binary release
-
-1. Enumerate the libraries actually built into the shipped FFmpeg DLLs, including
-   static dependencies, patches, Rust crates/submodules and their required notices.
-   Match them to the source revisions and build instructions used by this binary.
-2. Provide complete corresponding source access for the LGPL/GPL components in
-   the manner permitted by their licenses, clearly linked beside the Windows
-   download. An FFmpeg-only tarball plus a build-script archive does not by itself
-   establish completeness for all linked libraries.
-3. Do the same for the third-party components inside the yt-dlp standalone EXE.
-   Its project source archive alone is not the full executable's source inventory.
-4. Include both GPLv3 and LGPLv3 texts and all component notices in the final
-   package. Main app MIT terms must not be described as covering the whole bundle.
-5. Verify the final source-access links and their continued availability before
-   publishing. Do not rely on the rolling `latest` binary release for provenance.
-
-Exact top-level source snapshots have been saved locally for the review. They are
-supplemental evidence and are not labelled a complete corresponding-source bundle.
-An upstream-provided complete source bundle, or a smaller documented/rebuildable
-tool build, could resolve the remaining tool-specific work.
-
-## References
-
-- [FFmpeg license and redistribution checklist](https://ffmpeg.org/legal.html)
-- [LGPLv3 terms](https://www.gnu.org/licenses/lgpl-3.0.html)
-- [GPLv3 terms, including section 6](https://www.gnu.org/licenses/gpl-3.0.html)
-- [yt-dlp version-matched bundled license notices](https://github.com/yt-dlp/yt-dlp/blob/2026.10.26/THIRD_PARTY_LICENSES.txt)
-- [PyInstaller license and bootloader exception](https://pyinstaller.org/en/stable/license.html)
+Primary references: [FFmpeg](https://ffmpeg.org/legal.html),
+[LGPL 2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html),
+[CPython Windows runtime conditions](https://github.com/python/cpython/blob/v3.12.14/PC/crtlicense.txt),
+[GCC runtime exception](https://www.gnu.org/licenses/gcc-exception-3.1.html),
+[PyInstaller exception](https://pyinstaller.org/en/stable/license.html).

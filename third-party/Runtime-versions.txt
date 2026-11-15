@@ -1,0 +1,8 @@
+Bundled Windows Python runtime
+Python: 3.12.14
+OpenSSL: OpenSSL 3.5.8 25 Aug 2026
+zlib: 1.3.2
+Expat: expat_2.8.3
+Tcl/Tk: 8.6.12
+libffi: ABI 8 (unmodified DLL supplied with the Python runtime)
+The Python Windows CRT conditions apply only to Microsoft runtime code.
