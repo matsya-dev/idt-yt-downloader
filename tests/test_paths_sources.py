@@ -136,6 +136,53 @@ def test_deselection_during_discovery_is_respected():
     assert not selection.entries
 
 
+def test_child_folder_reselection_overrides_only_its_excluded_ancestor():
+    selection = Selection()
+    parent = Entry('tree:/a', 'tree', 'folder', 'Parent', 'url', path='/a')
+    child = Entry('tree:/a/chapter', 'tree', 'folder', 'Chapter', 'url', path='/a/chapter')
+    leaf = Entry('tree:/a/chapter/one.mp3', 'tree', 'audio', 'One', 'url', path='/a/chapter/one.mp3')
+    sibling = Entry('tree:/a/other/two.mp3', 'tree', 'audio', 'Two', 'url', path='/a/other/two.mp3')
+    selection.deselect(parent)
+    selection.intents.add(child.key)
+    selection.accept_collection(child, [leaf])
+    assert selection.state(child) == 'checked'
+    assert set(selection.entries) == {leaf.key}
+    # A parent result already in flight must not bring its other branches back.
+    selection.accept_collection(parent, [leaf, sibling])
+    assert set(selection.entries) == {leaf.key}
+    assert selection.state(parent) == 'partial'
+
+
+def test_nested_exclusion_still_wins_over_reselected_child_folder():
+    selection = Selection()
+    parent = Entry('tree:/a', 'tree', 'folder', 'Parent', 'url', path='/a')
+    child = Entry('tree:/a/chapter', 'tree', 'folder', 'Chapter', 'url', path='/a/chapter')
+    nested = Entry('tree:/a/chapter/sub', 'tree', 'folder', 'Subfolder', 'url', path='/a/chapter/sub')
+    leaf = Entry(nested.key + '/one.mp3', 'tree', 'audio', 'One', 'url', path=nested.path + '/one.mp3')
+    selection.deselect(parent)
+    selection.intents.add(child.key)
+    selection.deselect(nested)
+    selection.accept_collection(child, [leaf])
+    assert not selection.entries
+
+
+def test_playlist_reselection_overrides_excluded_channel():
+    selection = Selection()
+    channel = Entry('channel:test', 'youtube', 'folder', 'Channel', 'url')
+    playlist = Entry('playlist:PLone', 'youtube', 'playlist', 'Playlist', 'url', collection_id='PLone')
+    leaf = Entry('youtube:abcdefghijk@PLone', 'youtube', 'video', 'One', 'url', collection_id='PLone')
+    other = Entry('youtube:lmnopqrstuv@PLtwo', 'youtube', 'video', 'Two', 'url', collection_id='PLtwo')
+    selection.parents[playlist.key] = {channel.key}
+    selection.members[channel.key] = {leaf.key, other.key}
+    selection.members[playlist.key] = {leaf.key}
+    selection.deselect(channel)
+    # App.toggle clears known child exclusions when explicitly reselecting it.
+    selection.excluded.difference_update(selection.children(playlist))
+    selection.intents.add(playlist.key)
+    selection.accept_collection(playlist, [leaf])
+    assert set(selection.entries) == {leaf.key}
+
+
 def test_no_public_playlists_is_an_empty_collection(monkeypatch):
     import vedaboat.sources as sources
 

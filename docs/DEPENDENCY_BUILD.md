@@ -1,6 +1,6 @@
 # Matching dependency source and build instructions
 
-The release's `IDT-YT-Downloader-2.4.0-Dependency-Sources.zip` provides the unmodified
+The release's `IDT-YT-Downloader-2.4.1-Dependency-Sources.zip` provides the unmodified
 source archives, hashes, required notices and build scripts used for the bundled
 audio tools. The application's own complete source is a separate release asset
 and is also in the tagged GitHub repository. Source access is provided beside

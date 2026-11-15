@@ -119,9 +119,27 @@ def test_header_controls_and_hidden_selected_count_fit_compact_window(app):
     app.search_box.set('Recording 0');app.root.deiconify();app.root.geometry('800x620+20+20');app.root.update()
     try:
         assert app.count['text']=='1 shown' and app.selection_label['text']=='2 selected'
-        assert app.clear_button.winfo_rootx()>app.select_all_check.winfo_rootx()+app.select_all_check.winfo_width()
+        list_bottom=app.files.winfo_rooty()+app.files.winfo_height()
+        assert app.clear_button.winfo_rooty()>=list_bottom
+        assert app.count.winfo_rooty()>=list_bottom
+        assert app.selection_label.winfo_rooty()>=list_bottom
+        assert app.select_all_check.master is app.collapse_button.master
+        assert app.select_all_check.winfo_rootx()>=app.collapse_button.winfo_rootx()+app.collapse_button.winfo_width()
+        assert app.select_all_check.winfo_rooty()<app.files.winfo_rooty()
+        assert app.collapse_button['image'] and str(app.collapse_button['compound'])=='image'
         assert app.selection_label.winfo_rootx()>app.count.winfo_rootx()
         assert app.selection_label.winfo_rootx()+app.selection_label.winfo_width()<=app.root.winfo_rootx()+app.root.winfo_width()
+        assert app.files.winfo_height()>=120
+    finally:app.root.withdraw()
+
+
+def test_youtube_navigation_controls_fit_compact_window(app):
+    app.source='youtube';app.youtube_modes.pack(side='right',padx=5)
+    app.root.deiconify();app.root.geometry('800x620+20+20');app.root.update()
+    try:
+        right=app.select_all_check.winfo_rootx()+app.select_all_check.winfo_width()
+        assert right<=app.youtube_modes.winfo_rootx()
+        assert app.youtube_modes.winfo_width()>140
         assert app.files.winfo_height()>=120
     finally:app.root.withdraw()
 

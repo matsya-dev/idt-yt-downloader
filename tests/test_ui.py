@@ -22,7 +22,7 @@ def cancel_timers(root):
     collect(root)
     for after_id in root.tk.call('after','info'):
         script,kind=root.tk.call('after','info',after_id)
-        if kind!='timer':continue
+        if kind not in ('timer', 'idle'):continue
         name=root.tk.splitlist(script)[0]
         owner=next((w for w in widgets if name in (getattr(w,'_tclCommands',None) or [])),None)
         if owner is not None:owner.after_cancel(after_id)
@@ -318,6 +318,34 @@ def test_partial_parent_and_rechecking_parent_restores_excluded_children(app,mon
     app.toggle(leaves[0],False);assert app.selected().state(folder)=='partial'
     app.toggle(folder,True);assert app.selected().state(folder)=='checked'
     assert set(app.selected().entries)=={e.key for e in leaves}
+
+
+@pytest.mark.parametrize('ctrl', [False, True])
+def test_select_chapter_after_unticking_parent(app, monkeypatch, ctrl):
+    from vedaboat.model import BVKS_PATH, tree_url
+    parent_path = BVKS_PATH + '/01_-_English_lectures/01_-_Bhagavad_Gita'
+    parent = Entry('tree:' + parent_path, 'tree', 'folder', 'Bhagavad Gita', tree_url(parent_path), path=parent_path)
+    chapters = [Entry(parent.key + '/Chapter-0' + str(i), 'tree', 'folder', 'Chapter-0' + str(i),
+                      tree_url(parent_path + '/Chapter-0' + str(i)), path=parent_path + '/Chapter-0' + str(i)) for i in (1, 2)]
+    leaves = [Entry(ch.key + '/one.mp3', 'tree', 'audio', 'One', 'url', path=ch.path + '/one.mp3', size=10) for ch in chapters]
+    collections = {parent.url: Collection(parent.url, parent.title, chapters, 'tree')}
+    collections.update((ch.url, Collection(ch.url, ch.title, [leaf], 'tree')) for ch, leaf in zip(chapters, leaves))
+    monkeypatch.setattr(app, 'fetch', lambda url, *_: collections[url])
+    monkeypatch.setattr(app, 'submit', lambda fn, done, fail=None: done(fn()))
+    app.collection = collections[parent.url]
+    app.render_files()
+    root = app.browser.visible_ids[0]
+    app.browser.select(root)
+    assert set(app.selected().entries) == {leaf.key for leaf in leaves}
+    app.browser.select(root, click=True)
+    assert not app.selected().entries
+    node = next(n for n, e in app.browser.rows.items() if e.key == chapters[0].key)
+    app.browser.select(node, ctrl=ctrl, click=True)
+    assert set(app.selected().entries) == {leaves[0].key}
+    assert app.selected().state(chapters[0]) == 'checked'
+    assert app.selected().state(parent) == 'partial'
+    app.browser.select(node, click=True)
+    assert not app.selected().entries
 
 
 def test_deselect_channel_root_cancels_playlist_discovery(app,monkeypatch):

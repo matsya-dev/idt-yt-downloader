@@ -7,7 +7,7 @@ videos, playlists and channels. Downloads are started manually.
 
 [Open the latest release](https://github.com/matsya-dev/idt-yt-downloader/releases/latest).
 
-- **Portable EXE:** download `IDT-YT-Downloader-2.4.0-Windows-x64.exe` and double-click.
+- **Portable EXE:** download `IDT-YT-Downloader-2.4.1-Windows-x64.exe` and double-click.
   No installation, separate Python or manual unzipping is needed. Bundled resources
   unpack automatically while the app runs.
 - **ZIP alternative:** extract the complete ZIP and open `IDT-YT Downloader.exe`.

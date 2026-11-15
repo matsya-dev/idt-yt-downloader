@@ -61,6 +61,10 @@ def toolbar(name, color):
         font=ImageFont.truetype('C:/Windows/Fonts/segoeuib.ttf',66);d.text((29,5),'?',font=font,fill=color)
     elif name=='folder':
         line([(10,78),(10,24),(38,24),(46,34),(85,34),(85,78),(10,78)],7);line([(11,43),(85,43)],7)
+    elif name=='collapse':
+        line([(29,13),(82,13),(82,66)],7)
+        d.rounded_rectangle((13,29,66,82),radius=5,outline=color,width=7)
+        line([(26,55),(53,55)],7)
     elif name=='download':
         line([(48,10),(48,64)]);line([(26,44),(48,66),(70,44)]);line([(14,66),(14,84),(82,84),(82,66)],7)
     elif name=='pause':
@@ -72,7 +76,7 @@ def toolbar(name, color):
     return im.resize((22,22),Image.Resampling.LANCZOS)
 
 
-for name in ('home','back','up','refresh','settings','help','folder','download','pause','resume','open'):
+for name in ('home','back','up','refresh','settings','help','folder','collapse','download','pause','resume','open'):
     toolbar(name,'#60665f').save(icons/(name+'.png'))
     toolbar(name,'#bdc5c4').save(icons/(name+'-dark.png'))
     if name in ('download','pause','resume'):

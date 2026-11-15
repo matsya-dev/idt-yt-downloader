@@ -1,4 +1,4 @@
-IDT-YT Downloader 2.4.0 — distribution information
+IDT-YT Downloader 2.4.1 — distribution information
 
 Main download: single portable Windows x64 EXE. ZIP alternative and both source
 archives are distributed alongside it, with SHA256 checksums and test results.

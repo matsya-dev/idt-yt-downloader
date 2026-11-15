@@ -64,14 +64,21 @@ class Selection:
         self.entries.update((e.key, e) for e in recordings if self.allowed(e))
         self.loading.discard(entry.key)
 
+    def contains(self, group: str, key: str) -> bool:
+        return (group == key or key in self.members.get(group, set())
+                or group in self.parents.get(key, set())
+                or group.startswith('tree:') and key.startswith(group.rstrip('/') + '/'))
+
     def allowed(self, entry):
         if entry.key in self.excluded:
             return False
         for group in self.excluded_groups:
-            if entry.key in self.members.get(group, set()):
-                return False
-            if entry.source == 'tree' and entry.key.startswith(group.rstrip('/') + '/'):
-                return False
-            if entry.source == 'youtube' and group == 'playlist:' + entry.collection_id:
-                return False
+            blocked = self.contains(group, entry.key) or entry.source == 'youtube' and group == 'playlist:' + entry.collection_id
+            if blocked:
+                # A later explicit child selection overrides an unticked ancestor,
+                # without releasing its siblings to an in-flight parent discovery.
+                reselected = any(intent != group and self.contains(group, intent)
+                                 and self.contains(intent, entry.key) for intent in self.intents)
+                if not reselected:
+                    return False
         return True

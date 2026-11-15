@@ -56,6 +56,18 @@ def self_test(report_path: Path, network=False):
             from types import SimpleNamespace
             app.browser.key(SimpleNamespace(keysym='Up',state=8))
             assert app.files.focus()==nodes[0] and not app.selected().entries
+            folder=Entry('tree:/qa','tree','folder','Folder','https://audio.iskcondesiretree.com/index.php?q=f&f=/qa',path='/qa')
+            chapter=Entry('tree:/qa/chapter','tree','folder','Chapter','chapter',path='/qa/chapter')
+            leaf=Entry('tree:/qa/chapter/one.mp3','tree','audio','One','url',path='/qa/chapter/one.mp3',size=100)
+            app.collection=Collection(folder.url,folder.title,[chapter],'tree')
+            app.render_files()
+            app.fetch=lambda *_:Collection('chapter','Chapter',[leaf],'tree')
+            app.submit=lambda fn,done,fail=None:done(fn())
+            app.toggle(folder,False)
+            app.toggle(chapter,True)
+            assert app.selected().state(chapter)=='checked' and set(app.selected().entries)=={leaf.key}
+            app.clear_selection()
+            assert app.collapse_button['image'] and str(app.collapse_button['compound'])=='image'
             app.theme_mode.set('Dark');app.set_theme();assert app.dark.get()
             app.settings()
             app.theme_mode.set('Light');app.set_theme();assert not app.dark.get()
@@ -64,7 +76,7 @@ def self_test(report_path: Path, network=False):
             app.licenses()
             assert any(isinstance(w, tk.Toplevel) and 'Licenses and source' in w.title() for w in root.winfo_children())
             assert (application_directory() / 'third-party' / 'LAME-license.txt').is_file()
-            return dict(name=root.title(),theme=app.theme_mode.get(),arrows='focus only',icon='D3')
+            return dict(name=root.title(),theme=app.theme_mode.get(),arrows='focus only',icon='D3',folder_reselection='passed')
         finally:
             App.load=original
             if app:

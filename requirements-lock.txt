@@ -1,4 +1,4 @@
-# Exact development/build environment for the 2.4.0 release.
+# Exact development/build environment for the 2.4.x releases.
 altgraph==0.17.5
 beautifulsoup4==4.15.0
 certifi==2026.10.23

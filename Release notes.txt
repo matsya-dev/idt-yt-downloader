@@ -1,4 +1,17 @@
-IDT-YT Downloader 2.4.0
+IDT-YT Downloader 2.4.1
+
+Fixed selecting a child folder after its parent was unticked, including Bhakti
+Vikasa Swami > English lectures > Bhagavad Gita > Chapter-01. The child can now
+be selected without accidentally selecting its siblings. More deeply unticked
+folders and individual recordings remain excluded.
+
+Clear selection and the shown/selected counts are now below the recording list.
+Select all shown is beside the Collapse all icon above the list.
+
+The included tools, licenses, System theme default and saved-data format are
+unchanged from 2.4.0. Existing preferences, shortcuts and downloads are preserved.
+
+Portable packaging introduced in 2.4.0:
 
 Single portable EXE is the main download: double-click to run, with no installation
 or manual extraction. Resources unpack automatically while running. A ZIP folder

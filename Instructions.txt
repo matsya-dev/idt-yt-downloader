@@ -1,4 +1,4 @@
-IDT-YT Downloader 2.4.0
+IDT-YT Downloader 2.4.1
 
 Download the portable EXE and double-click it. No installation or manual extraction
 is needed. The first launch shows the Windows Python runtime conditions once.
@@ -41,8 +41,8 @@ Right-click any shortcut to Edit… or Remove, including built-ins. Changes surv
 updates. A saved channel Playlists link reopens Playlists. Shortcuts never start
 downloads. Settings → Restore default shortcuts keeps separately added shortcuts.
 The shortcuts scroll independently. + Add shortcut… sits just below the last
-shortcut with a little extra space. Clear selection is next to Select all shown
-above the list; shown and source-wide selected counts appear together on the right.
+shortcut with a little extra space. Select all shown sits beside the Collapse all
+icon above the list. Clear selection and the shown/selected counts sit below it.
 Selected totals include recordings hidden by searching or in other folders.
 
 2. CHOOSE DOWNLOAD FOLDER

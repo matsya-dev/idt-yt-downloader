@@ -1,4 +1,8 @@
-# Licensing review for 2.4.0
+# Licensing review for 2.4.1
+
+The 2.4.1 selection/layout patch uses the same recorded dependency binaries,
+source inputs and licenses as 2.4.0. Only application code, toolbar assets,
+tests and release documentation changed; no new dependencies were added.
 
 The previous 2.3.0 review identified missing source/notice coverage for the broad
 upstream FFmpeg build and official yt-dlp executable. Those binaries are not used
